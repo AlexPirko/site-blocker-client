@@ -1,4 +1,4 @@
-// import { protectedPage } from '@/features/auth';
-import { HomePage } from '@/pages/home';
+import { protectedPage } from "@/features/auth";
+import { HomePage } from "@/pages/home";
 
-export default HomePage;
+export default protectedPage(HomePage);

@@ -1,21 +1,19 @@
-import Image from "next/image";
-import { Inter } from "next/font/google";
-import { authControllerGetSessionInfo } from "@/shared/api/generated";
-import { useQuery } from "@tanstack/react-query";
-
-const inter = Inter({ subsets: ["latin"] });
+import { ToggleBlockingButton } from "@/features/toggle-blocking/ui/toggle-blocking-button";
+import { UiHeader } from "@/shared/ui/ui-header";
+import { Profile } from "@/shared/ui/widgets/profile";
 
 export function HomePage() {
-  const { data } = useQuery({
-    queryKey: ["session"],
-    queryFn: () => authControllerGetSessionInfo(),
-  });
-
   return (
-    <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
-    >
-      {data?.email}
-    </main>
+    <div className={`min-h-screen flex flex-col`}>
+      <UiHeader right={<Profile />} />
+      <div className="grid grid-cols-[200px_1fr]">
+        <aside className="px-5 pt-10">
+          <ToggleBlockingButton />
+        </aside>
+        <main className="pt-10 px-5">
+          <h1 className="text-2xl mb-8">Block list</h1>
+        </main>
+      </div>
+    </div>
   );
 }
